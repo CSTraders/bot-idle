@@ -19,6 +19,7 @@ These environment variables are available:
 - `BOT_CONFIG_*` - Path to an account file. Multiple environment variables can be provided to load multiple accounts.
 - `BOT_PERSONA` - Persona to use for all accounts if none is provided. Defaults to 1 (Online).
 - `BOT_APP_IDS` - App IDs to idle for all accounts if none are provided. Defaults to none.
+- `BOT_LOGIN_TIMEOUT` - Timeout for logging in to Steam. Defaults to 10 seconds.
 
 #### Loading accounts
 

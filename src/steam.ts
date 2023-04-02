@@ -21,18 +21,27 @@ function getLogonOptions(config: ConfigFile): LogOnOptions {
   return options;
 }
 
-export function loginClient(config: ConfigFile, timeout: number = 5000): Promise<SteamUser> {
+function getTimeout(): number {
+  const timeout = Number(process.env.BOT_LOGIN_TIMEOUT);
+  if (Number.isNaN(timeout) || timeout <= 0) {
+    return 10 * 1000;
+  }
+
+  return timeout;
+}
+
+export function loginClient(config: ConfigFile, timeout: number = getTimeout()): Promise<SteamUser> {
   return new Promise((resolve, reject) => {
     const client = new SteamUser({ autoRelogin: true });
-    const timeout = setTimeout(() => reject(new Error('Timeout')), 5000);
+    const timeoutId = setTimeout(() => reject(new Error('Timeout')), timeout);
 
     client.on('loggedOn', () => {
-      clearTimeout(timeout);
+      clearTimeout(timeoutId);
       resolve(client);
     });
 
     client.on('error', (err) => {
-      clearTimeout(timeout);
+      clearTimeout(timeoutId);
       reject(err);
     });
 
