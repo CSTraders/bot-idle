@@ -1,6 +1,6 @@
 import SteamUser from 'steam-user';
 import SteamTotp from 'steam-totp';
-import type { ConfigFile } from './util';
+import { ConfigFile } from './config';
 
 interface LogOnOptions {
   accountName: string;

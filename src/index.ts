@@ -1,39 +1,27 @@
 import SteamUser from 'steam-user';
 import { loginClient } from './steam';
-import {
-  ConfigFile,
-  getAppIds,
-  getConfigPathsFromDirEnv,
-  getConfigPathsFromEnv,
-  getErrorMessage,
-  getPersona,
-  loadConfigFile,
-} from './util';
+import { loadConfigFiles } from './config';
+import { getAppIds, getErrorMessage, getPersona } from './util';
 
 async function main() {
   const clients: SteamUser[] = [];
   process.once('beforeExit', () => {
+    console.log('Exiting...');
     for (const client of clients) {
+      console.log(`Logging off ${client.steamID ?? 'an unknown account'}...`);
       client.logOff();
     }
   });
 
-  let configs = getConfigPathsFromEnv();
+  const configs = await loadConfigFiles();
   if (configs.length === 0) {
-    configs = await getConfigPathsFromDirEnv();
+    console.error('No configs found');
+    process.exit(1);
   }
 
-  for (const path of configs) {
-    console.log(`Trying to load config from ${path}`);
-    let config: ConfigFile;
-    try {
-      config = await loadConfigFile(path);
-    } catch (err) {
-      console.error(`Failed to load config: ${getErrorMessage(err)}`);
-      continue;
-    }
+  console.log();
 
-    console.log(`Successfully loaded config for ${config.username}, attempting to login...`);
+  for (const config of configs) {
     try {
       const client = await loginClient(config);
       clients.push(client);
@@ -72,9 +60,13 @@ async function main() {
   }
 }
 
-process.on('SIGINT', () => {
+function exitHandler(signal: NodeJS.Signals) {
+  console.log(`Received ${signal}`);
   process.exit(0);
-});
+}
+
+process.on('SIGINT', exitHandler);
+process.on('SIGTERM', exitHandler);
 
 main().catch((err) => {
   console.error(err);
