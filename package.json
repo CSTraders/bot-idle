@@ -1,6 +1,6 @@
 {
   "name": "@cstraders/bot-idle",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A simple script for idling Steam accounts",
   "main": "dist/index.js",
   "repository": "https://github.com/cstraders/bot-idle",
