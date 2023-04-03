@@ -45,10 +45,11 @@ async function main() {
 
       console.log(`Successfully logged in as ${config.username}`);
 
-      if (config.app_ids?.length) {
+      const appIds = getAppIds(config.app_ids);
+      if (appIds.length) {
         try {
           console.log(`[${config.username}] Requesting free licenses...`);
-          await requestFreeLicenses(client, config.app_ids);
+          await requestFreeLicenses(client, appIds);
         } catch (err) {
           console.error(`[${config.username}] Failed to request free licenses: ${getErrorMessage(err)}`);
         }
@@ -56,8 +57,6 @@ async function main() {
 
       const persona = getPersona(config.persona);
       client.setPersona(persona);
-
-      const appIds = getAppIds(config.app_ids);
       client.gamesPlayed(appIds);
 
       console.log(`Set persona to ${SteamUser.EPersonaState[persona]} and games to ${appIds.join(', ') || 'none'}`);
