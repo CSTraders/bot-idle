@@ -48,3 +48,16 @@ export function loginClient(config: ConfigFile, timeout: number = getTimeout()):
     client.logOn(getLogonOptions(config));
   });
 }
+
+export function requestFreeLicenses(client: SteamUser, appIds: number[]): Promise<void> {
+  return new Promise((resolve, reject) => {
+    client.requestFreeLicense(appIds, (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve();
+    });
+  });
+}

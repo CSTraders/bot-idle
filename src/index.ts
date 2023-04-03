@@ -1,6 +1,6 @@
 import SteamUser from 'steam-user';
-import { loginClient } from './steam';
 import { loadConfigFiles } from './config';
+import { loginClient, requestFreeLicenses } from './steam';
 import { getAppIds, getErrorMessage, getPersona } from './util';
 
 async function main() {
@@ -44,6 +44,16 @@ async function main() {
       });
 
       console.log(`Successfully logged in as ${config.username}`);
+
+      if (config.app_ids?.length) {
+        try {
+          console.log(`[${config.username}] Requesting free licenses...`);
+          await requestFreeLicenses(client, config.app_ids);
+        } catch (err) {
+          console.error(`[${config.username}] Failed to request free licenses: ${getErrorMessage(err)}`);
+        }
+      }
+
       const persona = getPersona(config.persona);
       client.setPersona(persona);
 
