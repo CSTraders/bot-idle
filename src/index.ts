@@ -41,6 +41,10 @@ async function main() {
 
       client.on('disconnected', (eresult, msg) => {
         console.log(`[${config.username}] Disconnected: ${SteamUser.EResult[eresult]} - ${msg}`);
+        setTimeout(() => {
+          console.log(`[${config.username}] Trying to relog...`);
+          client.relog();
+        }, 1000);
       });
 
       console.log(`Successfully logged in as ${config.username}`);
