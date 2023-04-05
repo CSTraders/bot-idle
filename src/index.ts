@@ -18,6 +18,7 @@ async function main() {
     process.exit(1);
   }
 
+  console.log(`Loaded ${configs.length} config(s)`);
   console.log();
 
   for (const config of configs) {
@@ -27,15 +28,6 @@ async function main() {
 
       client.on('error', (err) => {
         client.error(`Error: ${getErrorMessage(err)}`);
-      });
-
-      client.on('accountLimitations', (limited, communityBanned, locked, canInviteFriends) => {
-        client.log(`Account limitations:`, {
-          limited,
-          communityBanned,
-          locked,
-          canInviteFriends,
-        });
       });
 
       client.on('disconnected', (_eresult, msg) => {
@@ -59,8 +51,6 @@ async function main() {
     } catch (err) {
       console.error(`[${config.username}] Failed to login: ${getErrorMessage(err)}`);
       continue;
-    } finally {
-      console.log();
     }
   }
 }

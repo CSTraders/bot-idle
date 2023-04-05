@@ -1,7 +1,7 @@
 import SteamUser from 'steam-user';
 import SteamTotp from 'steam-totp';
 import { ConfigFile } from './config';
-import { getAppIds, getPersona } from './util';
+import { constructLimitationMessage, getAppIds, getPersona } from './util';
 
 interface LogOnOptions {
   accountName: string;
@@ -44,6 +44,10 @@ export function loginClient(config: ConfigFile, timeout: number = getTimeout()):
     client.once('error', (err) => {
       clearTimeout(timeoutId);
       reject(err);
+    });
+
+    client.on('accountLimitations', (limited, communityBanned, locked, canInviteFriends) => {
+      client.log(constructLimitationMessage(limited, communityBanned, locked, canInviteFriends));
     });
 
     client.logOn(getLogonOptions(config));

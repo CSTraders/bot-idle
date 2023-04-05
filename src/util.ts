@@ -8,6 +8,27 @@ export function getErrorMessage(err: unknown): string {
   return String(err);
 }
 
+const STEAM_LIMITED_ACCOUNT_URL = 'https://support.steampowered.com/kb_article.php?ref=3330-IAGK-7663';
+const STEAM_LOCKED_ACCOUNT_URL = 'https://support.steampowered.com/kb_article.php?ref=6416-FHVM-3982';
+
+export function constructLimitationMessage(
+  limited: boolean,
+  communityBanned: boolean,
+  locked: boolean,
+  canInviteFriends: boolean
+): string {
+  const messages: string[] = ['Account limitations:'];
+  const add = (message: string) => messages.push(` - ${message}`);
+
+  if (limited) add(`limited account (see ${STEAM_LIMITED_ACCOUNT_URL})`);
+  if (locked) add(`locked account (see ${STEAM_LOCKED_ACCOUNT_URL})`);
+  if (communityBanned) add('community banned');
+  if (!canInviteFriends) add('cannot invite friends');
+  if (messages.length === 1) return 'No account limitations';
+
+  return messages.join('\n');
+}
+
 export function isValidPersona(persona: unknown): persona is SteamUser.EPersonaState {
   if (typeof persona !== 'number') {
     return false;
