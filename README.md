@@ -37,6 +37,7 @@ These environment variables are available:
 - `BOT_CONFIG_*` - Path to an account file. Multiple environment variables can be provided to load multiple accounts.
 - `BOT_PERSONA` - Persona to use for all accounts if none is provided. Defaults to 1 (Online).
 - `BOT_APP_IDS` - A comma-separated list of app IDs to idle for all accounts if none are provided. Defaults to none.
+- `BOT_ADD_FRIENDS` - Set to `true` to have the bots add eachother as friends. Defaults to `false`.
 
 #### Account files
 

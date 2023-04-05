@@ -1,6 +1,6 @@
 import { loadConfigFiles } from './config';
 import { getAppIds, getErrorMessage } from './util';
-import { CSteamUser, loggedOnHandler, loginClient, requestFreeLicenses } from './steam';
+import { CSteamUser, addEachOthers, loggedOnHandler, loginClient, requestFreeLicenses } from './steam';
 
 async function main() {
   const clients: CSteamUser[] = [];
@@ -52,6 +52,10 @@ async function main() {
       console.error(`[${config.username}] Failed to login: ${getErrorMessage(err)}`);
       continue;
     }
+  }
+
+  if (process.env.BOT_ADD_FRIENDS === 'true') {
+    await addEachOthers(clients);
   }
 }
 

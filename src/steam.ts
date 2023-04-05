@@ -1,7 +1,8 @@
+import SteamID from 'steamid';
 import SteamUser from 'steam-user';
 import SteamTotp from 'steam-totp';
 import { ConfigFile } from './config';
-import { constructLimitationMessage, getAppIds, getPersona } from './util';
+import { constructLimitationMessage, delay, getAppIds, getErrorMessage, getPersona } from './util';
 
 interface LogOnOptions {
   accountName: string;
@@ -77,19 +78,72 @@ export function loggedOnHandler(client: CSteamUser, config: ConfigFile) {
   client.log(`Set persona to ${SteamUser.EPersonaState[persona]} and games to ${appIds.join(', ') || 'none'}`);
 }
 
+export async function addFriendIfNot(client: CSteamUser, other: CSteamUser): Promise<void> {
+  const friends = client.myFriends;
+  const otherSteamId = other.steamID?.getSteamID64();
+  if (!otherSteamId) {
+    throw new Error(`Could not get steam id of ${other.username}`);
+  }
+
+  if (friends[otherSteamId]) {
+    return;
+  }
+
+  client.log(`Adding ${other.username} as friend`);
+  await client.addFriend(otherSteamId);
+}
+
+function isClientID(clients: CSteamUser[], steamId: SteamID): boolean {
+  return clients.some((client) => client.steamID?.getSteamID64() === steamId.getSteamID64());
+}
+
+export async function addEachOthers(clients: CSteamUser[]): Promise<void> {
+  for (const client of clients) {
+    async function acceptIfClient(steamId: SteamID, relationship: SteamUser.EFriendRelationship) {
+      if (isClientID(clients, steamId) && relationship === SteamUser.EFriendRelationship.RequestRecipient) {
+        try {
+          await client.addFriend(steamId);
+          client.log(`Accepted ${steamId} as friend`);
+        } catch (err) {
+          client.error(`Failed to accept ${steamId} as friend: ${getErrorMessage(err)}`);
+        }
+      }
+    }
+
+    client.on('friendRelationship', acceptIfClient);
+    for (const [steamId, relationship] of Object.entries(client.myFriends)) {
+      await acceptIfClient(new SteamID(steamId), relationship);
+    }
+
+    for (const other of clients) {
+      if (client === other) {
+        continue;
+      }
+
+      try {
+        await addFriendIfNot(client, other);
+      } catch (err) {
+        client.error(`Failed to add ${other.username} as friend: ${getErrorMessage(err)}`);
+      }
+
+      await delay(1000);
+    }
+  }
+}
+
 export class CSteamUser extends SteamUser {
-  private _username: string;
+  public readonly username: string;
 
   constructor(username: string) {
     super({ autoRelogin: true });
-    this._username = username;
+    this.username = username;
   }
 
   public log(...args: any[]): void {
-    console.log(`[${this._username}]`, ...args);
+    console.log(`[${this.username}]`, ...args);
   }
 
   public error(...args: any[]): void {
-    console.error(`[${this._username}]`, ...args);
+    console.error(`[${this.username}]`, ...args);
   }
 }
