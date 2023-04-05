@@ -111,8 +111,6 @@ export async function loadConfigFiles(): Promise<ConfigFile[]> {
       configs.push(config);
     } catch (err) {
       console.error(`Failed to load config: ${getErrorMessage(err)}`);
-    } finally {
-      console.log();
     }
   }
 

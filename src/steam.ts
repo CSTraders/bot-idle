@@ -1,7 +1,7 @@
 import SteamUser from 'steam-user';
 import SteamTotp from 'steam-totp';
 import { ConfigFile } from './config';
-import { getAppIds, getErrorMessage, getPersona } from './util';
+import { getAppIds, getPersona } from './util';
 
 interface LogOnOptions {
   accountName: string;
@@ -31,9 +31,9 @@ function getTimeout(): number {
   return timeout;
 }
 
-export function loginClient(config: ConfigFile, timeout: number = getTimeout()): Promise<SteamUser> {
+export function loginClient(config: ConfigFile, timeout: number = getTimeout()): Promise<CSteamUser> {
   return new Promise((resolve, reject) => {
-    const client = new SteamUser({ autoRelogin: true });
+    const client = new CSteamUser(config.username);
     const timeoutId = setTimeout(() => reject(new Error('Timeout')), timeout);
 
     client.once('loggedOn', () => {
@@ -50,7 +50,7 @@ export function loginClient(config: ConfigFile, timeout: number = getTimeout()):
   });
 }
 
-export function requestFreeLicenses(client: SteamUser, appIds: number[]): Promise<void> {
+export function requestFreeLicenses(client: CSteamUser, appIds: number[]): Promise<void> {
   return new Promise((resolve, reject) => {
     client.requestFreeLicense(appIds, (err) => {
       if (err) {
@@ -63,13 +63,29 @@ export function requestFreeLicenses(client: SteamUser, appIds: number[]): Promis
   });
 }
 
-export function loggedOnHandler(client: SteamUser, config: ConfigFile) {
-  console.log(`Successfully logged in as ${config.username}`);
-
+export function loggedOnHandler(client: CSteamUser, config: ConfigFile) {
+  client.log(`Successfully logged in`);
   const persona = getPersona(config.persona);
   const appIds = getAppIds(config.app_ids);
   client.gamesPlayed(appIds);
   client.setPersona(persona);
 
-  console.log(`Set persona to ${SteamUser.EPersonaState[persona]} and games to ${appIds.join(', ') || 'none'}`);
+  client.log(`Set persona to ${SteamUser.EPersonaState[persona]} and games to ${appIds.join(', ') || 'none'}`);
+}
+
+export class CSteamUser extends SteamUser {
+  private _username: string;
+
+  constructor(username: string) {
+    super({ autoRelogin: true });
+    this._username = username;
+  }
+
+  public log(...args: any[]): void {
+    console.log(`[${this._username}]`, ...args);
+  }
+
+  public error(...args: any[]): void {
+    console.error(`[${this._username}]`, ...args);
+  }
 }

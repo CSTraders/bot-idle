@@ -1,14 +1,13 @@
-import SteamUser from 'steam-user';
 import { loadConfigFiles } from './config';
-import { loggedOnHandler, loginClient, requestFreeLicenses } from './steam';
 import { getAppIds, getErrorMessage } from './util';
+import { CSteamUser, loggedOnHandler, loginClient, requestFreeLicenses } from './steam';
 
 async function main() {
-  const clients: SteamUser[] = [];
+  const clients: CSteamUser[] = [];
   process.once('beforeExit', () => {
     console.log('Exiting...');
     for (const client of clients) {
-      console.log(`Logging off ${client.steamID ?? 'an unknown account'}...`);
+      client.log(`Logging off...`);
       client.logOff();
     }
   });
@@ -27,11 +26,11 @@ async function main() {
       clients.push(client);
 
       client.on('error', (err) => {
-        console.error(`[${config.username}] Error: ${getErrorMessage(err)}`);
+        client.error(`Error: ${getErrorMessage(err)}`);
       });
 
       client.on('accountLimitations', (limited, communityBanned, locked, canInviteFriends) => {
-        console.log(`[${config.username}] Account limitations:`, {
+        client.log(`Account limitations:`, {
           limited,
           communityBanned,
           locked,
@@ -39,17 +38,17 @@ async function main() {
         });
       });
 
-      client.on('disconnected', (eresult, msg) => {
-        console.log(`[${config.username}] Disconnected: ${SteamUser.EResult[eresult]} - ${msg}`);
+      client.on('disconnected', (_eresult, msg) => {
+        client.log(`Disconnected: ${msg}`);
       });
 
       const appIds = getAppIds(config.app_ids);
       if (appIds.length) {
         try {
-          console.log(`[${config.username}] Requesting free licenses...`);
+          client.log(`Requesting free licenses...`);
           await requestFreeLicenses(client, appIds);
         } catch (err) {
-          console.error(`[${config.username}] Failed to request free licenses: ${getErrorMessage(err)}`);
+          client.error(`Failed to request free licenses: ${getErrorMessage(err)}`);
         }
       }
 
@@ -58,7 +57,7 @@ async function main() {
         loggedOnHandler(client, config);
       });
     } catch (err) {
-      console.error(`Failed to login: ${getErrorMessage(err)}`);
+      console.error(`[${config.username}] Failed to login: ${getErrorMessage(err)}`);
       continue;
     } finally {
       console.log();
