@@ -1,7 +1,7 @@
 import SteamUser from 'steam-user';
 import { loadConfigFiles } from './config';
-import { loginClient, requestFreeLicenses } from './steam';
-import { getAppIds, getErrorMessage, getPersona } from './util';
+import { loggedOnHandler, loginClient, requestFreeLicenses } from './steam';
+import { getAppIds, getErrorMessage } from './util';
 
 async function main() {
   const clients: SteamUser[] = [];
@@ -43,8 +43,6 @@ async function main() {
         console.log(`[${config.username}] Disconnected: ${SteamUser.EResult[eresult]} - ${msg}`);
       });
 
-      console.log(`Successfully logged in as ${config.username}`);
-
       const appIds = getAppIds(config.app_ids);
       if (appIds.length) {
         try {
@@ -55,11 +53,10 @@ async function main() {
         }
       }
 
-      const persona = getPersona(config.persona);
-      client.setPersona(persona);
-      client.gamesPlayed(appIds);
-
-      console.log(`Set persona to ${SteamUser.EPersonaState[persona]} and games to ${appIds.join(', ') || 'none'}`);
+      loggedOnHandler(client, config);
+      client.on('loggedOn', () => {
+        loggedOnHandler(client, config);
+      });
     } catch (err) {
       console.error(`Failed to login: ${getErrorMessage(err)}`);
       continue;

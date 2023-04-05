@@ -1,6 +1,7 @@
 import SteamUser from 'steam-user';
 import SteamTotp from 'steam-totp';
 import { ConfigFile } from './config';
+import { getAppIds, getErrorMessage, getPersona } from './util';
 
 interface LogOnOptions {
   accountName: string;
@@ -35,12 +36,12 @@ export function loginClient(config: ConfigFile, timeout: number = getTimeout()):
     const client = new SteamUser({ autoRelogin: true });
     const timeoutId = setTimeout(() => reject(new Error('Timeout')), timeout);
 
-    client.on('loggedOn', () => {
+    client.once('loggedOn', () => {
       clearTimeout(timeoutId);
       resolve(client);
     });
 
-    client.on('error', (err) => {
+    client.once('error', (err) => {
       clearTimeout(timeoutId);
       reject(err);
     });
@@ -60,4 +61,15 @@ export function requestFreeLicenses(client: SteamUser, appIds: number[]): Promis
       resolve();
     });
   });
+}
+
+export function loggedOnHandler(client: SteamUser, config: ConfigFile) {
+  console.log(`Successfully logged in as ${config.username}`);
+
+  const persona = getPersona(config.persona);
+  const appIds = getAppIds(config.app_ids);
+  client.gamesPlayed(appIds);
+  client.setPersona(persona);
+
+  console.log(`Set persona to ${SteamUser.EPersonaState[persona]} and games to ${appIds.join(', ') || 'none'}`);
 }
