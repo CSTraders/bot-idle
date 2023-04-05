@@ -7,7 +7,7 @@ A simple docker image for idling Steam accounts.
 Simple example:
 
 ```console
-$ docker run -it \
+docker run -it \
   -v /path/to/bots:/bots \
   -e BOT_CONFIG_DIR=/bots \
   ghcr.io/cstraders/bot-idle
@@ -16,7 +16,7 @@ $ docker run -it \
 Complete example:
 
 ```console
-$ docker run -it \
+docker run -it \
   -v /path/to/bots:/bots \
   -v /some/path/to/bot.json:/somewhere/bot1.json \
   -v /other/path/to/bot.json:/somewhere/bot2.json \
