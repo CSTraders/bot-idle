@@ -30,9 +30,9 @@ jobs:
       - name: Should push latest tag?
         id: latest_tag
         run: |
-          echo "enable=true" >> $GITHUB_ENV
+          echo "enable=true" >> $GITHUB_OUTPUT
           if [[ "${{ github.ref }}" == *"-"* ]]; then
-            echo "enable=false" >> $GITHUB_ENV
+            echo "enable=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Extract metadata (tags, labels) for Docker
