@@ -159,10 +159,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/steam-user@^4.26.2":
-  version "4.26.2"
-  resolved "https://registry.yarnpkg.com/@types/steam-user/-/steam-user-4.26.2.tgz#b05f1bacd6552a4b2e5610030dd8e6ea632deb0d"
-  integrity sha512-BQgSjjDVf7cx2EqTk3MkI9hO6FdmiMdu4ekY4yyOFFnvCIk/KoJ04TDWAH3I12pSOPCCX8mEAw4mpf94+YY7ew==
+"@types/steam-user@^4.26.3":
+  version "4.26.3"
+  resolved "https://registry.yarnpkg.com/@types/steam-user/-/steam-user-4.26.3.tgz#f7bdd1c4044d158342c8de3379beebe0f9b8c247"
+  integrity sha512-wAN1uEyxWe0cSmIwiM0xYWwa+Tbkh4ITogRuD65/tl78nkcoBkBCMNGw92pcqtlNAZU7GXGlh1Inv2fZ6/2J0w==
   dependencies:
     "@types/bytebuffer" "*"
     "@types/file-manager" "*"
