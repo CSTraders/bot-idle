@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/node": "^18.16.0",
     "@types/steam-totp": "^2.1.0",
-    "@types/steam-user": "^4.26.2",
+    "@types/steam-user": "^4.26.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
