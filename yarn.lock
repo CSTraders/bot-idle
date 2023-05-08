@@ -434,6 +434,11 @@ safe-buffer@*:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
 
+simple-vdf@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/simple-vdf/-/simple-vdf-1.1.1.tgz#07e2c4dec06cf614ed6f4211b18cce123c93fca9"
+  integrity sha512-IHz5fiOyWX0etTzlrzpWfKWxkwOhSwbbuZxcig+JuON0id1clnYlINBRbe4M4Pz4VnNvNvNaZiKiS7tdIYyF6g==
+
 smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
@@ -486,10 +491,10 @@ steam-totp@^2.0.1, steam-totp@^2.1.2:
   resolved "https://registry.yarnpkg.com/steam-totp/-/steam-totp-2.1.2.tgz#ab03eea28e40dedddde3041468dc8551055d84cc"
   integrity sha512-bTKlc/NoIUQId+my+O556s55DDsNNXfVIPWFDNVu68beql7AJhV0c+GTjFxfwCDYfdc4NkAme+0WrDdnY2D2VA==
 
-steam-user@^4.28.2:
-  version "4.28.2"
-  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.28.2.tgz#291ef6d562dfa04eb4da9f030cc4cf17c3932526"
-  integrity sha512-ox/1i/ZKtOudcSkdt/aXA3OpG70ormcFn8ggBQ/KEhdNuaCo967APSYD39TTsMkBpsUAdtwbrZizc31VYv7bMw==
+steam-user@^4.28.3:
+  version "4.28.3"
+  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.28.3.tgz#62b9be9377ac3adf0c5c6dc719c209cfa7185b84"
+  integrity sha512-FoWgqqhN8+mXcNCXMe9OslQpTfIj4x+bmbyNkX6WDMq1OEBQPPNfPvsVDTJIdDbwKT7Lwa3894B982MkXXqtKQ==
   dependencies:
     "@bbob/parser" "^2.2.0"
     "@doctormckay/stdlib" "^1.15.1"
@@ -501,12 +506,12 @@ steam-user@^4.28.2:
     file-manager "^2.0.0"
     lzma "^2.3.2"
     protobufjs "^6.11.3"
+    simple-vdf "^1.1.1"
     socks-proxy-agent "^7.0.0"
     steam-appticket "^1.0.1"
     steam-session "^1.1.0"
     steam-totp "^2.0.1"
     steamid "^1.1.0"
-    vdf "^0.0.2"
     websocket13 "^3.0.1"
 
 steamid@^1.1.0:
