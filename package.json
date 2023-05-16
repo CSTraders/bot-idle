@@ -10,7 +10,7 @@
     "build": "tsc"
   },
   "devDependencies": {
-    "@types/node": "^18.16.3",
+    "@types/node": "^20.1.4",
     "@types/steam-totp": "^2.1.0",
     "@types/steam-user": "^4.26.3",
     "ts-node": "^10.9.1",
