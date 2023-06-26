@@ -21,10 +21,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@doctormckay/stdlib@^1.14.1", "@doctormckay/stdlib@^1.15.0", "@doctormckay/stdlib@^1.15.1", "@doctormckay/stdlib@^1.6.0", "@doctormckay/stdlib@^1.8.0":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@doctormckay/stdlib/-/stdlib-1.15.1.tgz#db07991e5aef986681db9d5ea18dbca45cd31e8d"
-  integrity sha512-Sza+d7pLU6GxbXgPLfsJ/LphSYzflNGTr8SeaA6plLLsOUplfCDCpDtxTF3AMPkE9mCwA8K28s25jchRiv2/4g==
+"@doctormckay/stdlib@^1.14.1", "@doctormckay/stdlib@^1.15.0", "@doctormckay/stdlib@^1.15.2", "@doctormckay/stdlib@^1.6.0", "@doctormckay/stdlib@^1.8.0":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@doctormckay/stdlib/-/stdlib-1.15.2.tgz#d980981403329062195e42609e426107c5daebfb"
+  integrity sha512-PRb0kXvHbAzYZT3wIaXTBg1JxiPGZJ54KNg8z5uXkuQ07PWqA1gbXmb15NrMd6EnDa4evC/ErHXVvb9EgySR2w==
 
 "@doctormckay/steam-crypto@^1.2.0":
   version "1.2.0"
@@ -491,13 +491,13 @@ steam-totp@^2.0.1, steam-totp@^2.1.2:
   resolved "https://registry.yarnpkg.com/steam-totp/-/steam-totp-2.1.2.tgz#ab03eea28e40dedddde3041468dc8551055d84cc"
   integrity sha512-bTKlc/NoIUQId+my+O556s55DDsNNXfVIPWFDNVu68beql7AJhV0c+GTjFxfwCDYfdc4NkAme+0WrDdnY2D2VA==
 
-steam-user@^4.28.6:
-  version "4.28.6"
-  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.28.6.tgz#55d3c0f53b7e0253732948a69d9c7b5722bd558e"
-  integrity sha512-ZZv92jVKwnJYFI63+U7WPwSx+bL/FPLLcT9b4nsT/27UZe9YnF0Ankd3jLhBtdo8R9EVAN7PkIMJJBxUCQHrzA==
+steam-user@^4.28.7:
+  version "4.28.7"
+  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.28.7.tgz#4e4f222dd5baeb213bcebc642974fa883655b3b4"
+  integrity sha512-bV1oBCOq0CiXVW4RPuZqL44ksYJe2ttnsTiGdEPAwYsbB6xBT+UyA3nzMLlDWpWmbuIPV7jXHYWKPA2p9uz4RA==
   dependencies:
     "@bbob/parser" "^2.2.0"
-    "@doctormckay/stdlib" "^1.15.1"
+    "@doctormckay/stdlib" "^1.15.2"
     "@doctormckay/steam-crypto" "^1.2.0"
     adm-zip "^0.5.10"
     appdirectory "^0.1.0"
