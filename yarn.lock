@@ -21,10 +21,10 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
-"@doctormckay/stdlib@^1.14.1", "@doctormckay/stdlib@^1.15.0", "@doctormckay/stdlib@^1.15.1", "@doctormckay/stdlib@^1.6.0", "@doctormckay/stdlib@^1.8.0":
-  version "1.15.1"
-  resolved "https://registry.yarnpkg.com/@doctormckay/stdlib/-/stdlib-1.15.1.tgz#db07991e5aef986681db9d5ea18dbca45cd31e8d"
-  integrity sha512-Sza+d7pLU6GxbXgPLfsJ/LphSYzflNGTr8SeaA6plLLsOUplfCDCpDtxTF3AMPkE9mCwA8K28s25jchRiv2/4g==
+"@doctormckay/stdlib@^1.14.1", "@doctormckay/stdlib@^1.15.0", "@doctormckay/stdlib@^1.15.2", "@doctormckay/stdlib@^1.6.0", "@doctormckay/stdlib@^1.8.0":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@doctormckay/stdlib/-/stdlib-1.15.2.tgz#d980981403329062195e42609e426107c5daebfb"
+  integrity sha512-PRb0kXvHbAzYZT3wIaXTBg1JxiPGZJ54KNg8z5uXkuQ07PWqA1gbXmb15NrMd6EnDa4evC/ErHXVvb9EgySR2w==
 
 "@doctormckay/steam-crypto@^1.2.0":
   version "1.2.0"
@@ -350,6 +350,11 @@ is-typed-array@^1.1.10, is-typed-array@^1.1.3:
     gopd "^1.0.1"
     has-tostringtag "^1.0.0"
 
+kvparser@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/kvparser/-/kvparser-1.0.1.tgz#9cfb3adefbea4c94d5786c497b80103bbfb7723d"
+  integrity sha512-Hih4Cw2gQFMAUB4gbKHTgRr+9ClDGQHbu4q05NiTmgYswt1AaOehvLe0l5AntTmXZS3j2Uw9FnEkLqIG8CuVFA==
+
 long@^3.2.0, long@~3:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/long/-/long-3.2.0.tgz#d821b7138ca1cb581c172990ef14db200b5c474b"
@@ -434,11 +439,6 @@ safe-buffer@*:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
 
-simple-vdf@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/simple-vdf/-/simple-vdf-1.1.1.tgz#07e2c4dec06cf614ed6f4211b18cce123c93fca9"
-  integrity sha512-IHz5fiOyWX0etTzlrzpWfKWxkwOhSwbbuZxcig+JuON0id1clnYlINBRbe4M4Pz4VnNvNvNaZiKiS7tdIYyF6g==
-
 smart-buffer@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.2.0.tgz#6e1d71fa4f18c05f7d0ff216dd16a481d0e8d9ae"
@@ -491,22 +491,22 @@ steam-totp@^2.0.1, steam-totp@^2.1.2:
   resolved "https://registry.yarnpkg.com/steam-totp/-/steam-totp-2.1.2.tgz#ab03eea28e40dedddde3041468dc8551055d84cc"
   integrity sha512-bTKlc/NoIUQId+my+O556s55DDsNNXfVIPWFDNVu68beql7AJhV0c+GTjFxfwCDYfdc4NkAme+0WrDdnY2D2VA==
 
-steam-user@^4.28.6:
-  version "4.28.6"
-  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.28.6.tgz#55d3c0f53b7e0253732948a69d9c7b5722bd558e"
-  integrity sha512-ZZv92jVKwnJYFI63+U7WPwSx+bL/FPLLcT9b4nsT/27UZe9YnF0Ankd3jLhBtdo8R9EVAN7PkIMJJBxUCQHrzA==
+steam-user@^4.28.8:
+  version "4.28.8"
+  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.28.8.tgz#c41194984ae1b7018232974dce99ef8136b49896"
+  integrity sha512-DQAoLxpKFFVL3jKb8eMXZ4ne+j/CF4ppjwyTMQY3cvJ/SPGZ4UMKKm2x8V9is+YBE2Gif10ehQLXU9dBdvJwVg==
   dependencies:
     "@bbob/parser" "^2.2.0"
-    "@doctormckay/stdlib" "^1.15.1"
+    "@doctormckay/stdlib" "^1.15.2"
     "@doctormckay/steam-crypto" "^1.2.0"
     adm-zip "^0.5.10"
     appdirectory "^0.1.0"
     binarykvparser "^2.2.0"
     bytebuffer "^5.0.0"
     file-manager "^2.0.0"
+    kvparser "^1.0.1"
     lzma "^2.3.2"
     protobufjs "^6.11.3"
-    simple-vdf "^1.1.1"
     socks-proxy-agent "^7.0.0"
     steam-appticket "^1.0.1"
     steam-session "^1.1.0"
