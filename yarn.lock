@@ -383,10 +383,10 @@ steam-appticket@^1.0.1:
     protobufjs "^6.8.8"
     steamid "^1.1.0"
 
-steam-session@^1.2.5:
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/steam-session/-/steam-session-1.2.5.tgz#14d0e32968676c7ea60c2344563418dadb0e0b29"
-  integrity sha512-GeIvyH9jmgMBmIBXmPpdJRLyR3o4gKa98vwxzDW5A7WrDLAF60O38mQ/MV4EhaRUmZS1HMMMTo1cEk+AKEqjjg==
+steam-session@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/steam-session/-/steam-session-1.3.3.tgz#971deabc302ddf5d2a3932377546f8ed526230f9"
+  integrity sha512-pQUuQXrCMfIuMlL7GSocnKWQD41LPW2igVg2TPIfVVPf3kUXWJBydCOoJWqG2CuHOk/LWlU45vFIHkuPPSA87Q==
   dependencies:
     "@doctormckay/stdlib" "^2.4.1"
     debug "^4.3.4"
@@ -403,10 +403,10 @@ steam-totp@^2.0.1, steam-totp@^2.1.2:
   resolved "https://registry.yarnpkg.com/steam-totp/-/steam-totp-2.1.2.tgz#ab03eea28e40dedddde3041468dc8551055d84cc"
   integrity sha512-bTKlc/NoIUQId+my+O556s55DDsNNXfVIPWFDNVu68beql7AJhV0c+GTjFxfwCDYfdc4NkAme+0WrDdnY2D2VA==
 
-steam-user@^4.29.1:
-  version "4.29.1"
-  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.29.1.tgz#682b0b673043ef2f19cf141504d0818a3937e3bd"
-  integrity sha512-J4Z3QZRvB6ETRMe/oSiW3byLdqixUBv2UrBJ9cGeyFCuxl0z69zuarK/IbCFxDeCM2t8zLQwY9l0z94ofzF15w==
+steam-user@^4.29.3:
+  version "4.29.3"
+  resolved "https://registry.yarnpkg.com/steam-user/-/steam-user-4.29.3.tgz#a55365db164c5a8ccd41311ec15decbe61eaa836"
+  integrity sha512-JsLjqXIobWdRq0DoLpDiwDLnBHVkPwl3CG6+NU0nsoT35a0Wd9jbZE+I7pSj9dmk1lLyatzcxneagVrylfDt6g==
   dependencies:
     "@bbob/parser" "^2.2.0"
     "@doctormckay/stdlib" "^1.16.0"
@@ -420,7 +420,7 @@ steam-user@^4.29.1:
     protobufjs "^6.11.3"
     socks-proxy-agent "^7.0.0"
     steam-appticket "^1.0.1"
-    steam-session "^1.2.5"
+    steam-session "^1.3.3"
     steam-totp "^2.0.1"
     steamid "^1.1.0"
     websocket13 "^3.0.1"
